@@ -1,0 +1,22 @@
+﻿@model List<Product>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    @foreach(Product prd in Model)
+    {
+        <div>
+            <h4>@prd.ProductName</h4>
+            <p>@prd.Price</p>
+            <p>
+               <a href="/Product/Get/@prd.ProductId">Get Details</a>
+            </p>
+        </div>
+    }
+</body>
+</html>
