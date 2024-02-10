@@ -1,9 +1,4 @@
 ﻿using Entities.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.Contracts
 {
@@ -12,6 +7,11 @@ namespace Services.Contracts
         IEnumerable<Product> GetAllProcucts(bool trackChanges);
 
         Product? GetOneProduct(int id, bool trackChanges);
+
+        void CreateOneProduct(Product product);
+        void UpdateOneProduct(Product product);
+
+        void DeleteOneProduct(int id);
 
     }
 }

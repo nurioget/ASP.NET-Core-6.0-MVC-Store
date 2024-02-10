@@ -16,9 +16,14 @@ namespace Repositories
 
         }
 
-        public IQueryable<Product> GetAllProducts(bool trackChanges)=>FindAll(trackChanges);
+        public void CreateOneProduct(Product product) => Create(product);
 
-       // Interdace
+        public void DeleteOneProduct(Product product) => Remove(product);
+
+
+        public IQueryable<Product> GetAllProducts(bool trackChanges) => FindAll(trackChanges);
+
+        // Interdace
         public Product? GetOneProduct(int id, bool trackChanges)
         {
 

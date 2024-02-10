@@ -11,17 +11,17 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<RepositoryContext>(options =>
 {
     options.UseSqlite(builder.Configuration.GetConnectionString("sqlconnection"),
-    b=>b.MigrationsAssembly("Store"));
+    b => b.MigrationsAssembly("Store"));
 });
 
-builder.Services.AddScoped<IRepositoryManager , RepositoryManager>();
-builder.Services.AddScoped<IProductRepository , ProductRepository>();
-builder.Services.AddScoped<ICategoryRepositýry , CategoryRepositýry>();
+builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ICategoryRepositýry, CategoryRepositýry>();
 
 
-builder.Services.AddScoped<IServiceManager , ServiceManager>();
-builder.Services.AddScoped<IProductService , ProductManager>();
-builder.Services.AddScoped<ICategoryService , CategoryManager>();
+builder.Services.AddScoped<IServiceManager, ServiceManager>();
+builder.Services.AddScoped<IProductService, ProductManager>();
+builder.Services.AddScoped<ICategoryService, CategoryManager>();
 
 
 
@@ -43,8 +43,18 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapAreaControllerRoute(
+        name:"Admin",
+        areaName:"Admin",
+        pattern:"Admin/{controller=Dashboard}/{action=Index}/{id?}"
+        );
+
+    endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+});
+
+
+
 
 app.Run();
