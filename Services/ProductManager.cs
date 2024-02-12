@@ -1,4 +1,6 @@
-﻿using Entities.Models;
+﻿using AutoMapper;
+using Entities.Dtos;
+using Entities.Models;
 using Repositories.Contracts;
 using Services.Contracts;
 
@@ -6,16 +8,19 @@ using Services.Contracts;
 public class ProductManager : IProductService
 {
     private readonly IRepositoryManager _manager;
+    private readonly IMapper _mapper;
 
-    public ProductManager(IRepositoryManager manager)
+    public ProductManager(IRepositoryManager manager, IMapper mapper )
     {
         _manager = manager;
+        _mapper = mapper;
     }
 
 
 
-    public void CreateOneProduct(Product product)
+    public void CreateOneProduct(ProductDtoForInsertion productDto)
     {
+       Product product = _mapper.Map<Product>( productDto );
         _manager.Product.Create(product);
         _manager.Save();
     }
@@ -48,13 +53,23 @@ public class ProductManager : IProductService
 
     }
 
-
-
-    public void UpdateOneProduct(Product product)
+    public ProductDtoForUpdate GetOneProductForUpdate(int id, bool trackChanges)
     {
-        var entitiy = _manager.Product.GetOneProduct(product.ProductId, true);
-        entitiy.ProductName = product.ProductName;
-        entitiy.Price = product.Price;
+        var product = GetOneProduct(id, trackChanges);
+        var productDto=_mapper.Map<ProductDtoForUpdate>(product);
+        return productDto;
+    }
+
+    public void UpdateOneProduct(ProductDtoForUpdate productDto)
+    {
+        //var entitiy = _manager.Product.GetOneProduct(productDto.ProductId, true);
+        //entitiy.ProductName = productDto.ProductName;
+        //entitiy.Price = productDto.Price;
+        //entitiy.CategoryId = productDto.CategoryId;
+
+       var entitiy  = _mapper.Map<Product>(productDto);
+        
+        _manager.Product.UpdateOneProduct(entitiy);
         _manager.Save();
     }
 
