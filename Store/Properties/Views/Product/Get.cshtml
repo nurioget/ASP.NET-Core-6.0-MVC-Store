@@ -1,0 +1,30 @@
+﻿@model Product
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-center">
+            <h6 class="display-6">
+                @Model.ProductName
+            </h6>
+
+            <img class="img-fluid shadow rounded-3 my-3" width="250" src="@Model?.ImageUrl" alt="@Model?.ImageUrl" />
+            <p class="lead text-danger">@Model.Price.ToString("c")</p>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="btn-group">
+    <a class="btn btn-primary" asp-controller="Home" asp-action="Index">
+        <i class="fa-solid fa-house"></i>
+        Home
+    </a>
+    <a class="btn btn-primary" asp-controller="Product" asp-action="Index">
+        <i class="fa-solid fa-list"></i>
+        Products
+    </a>
+</div>
+
+

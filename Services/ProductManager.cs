@@ -45,10 +45,12 @@ public class ProductManager : IProductService
     public Product? GetOneProduct(int id, bool trackChanges)
     {
         var product = _manager.Product.GetOneProduct(id, trackChanges);
-        if (product == null)
+        if (product is null)
         {
             throw new Exception("Product not found!");
         }
+
+
         return product;
 
     }
