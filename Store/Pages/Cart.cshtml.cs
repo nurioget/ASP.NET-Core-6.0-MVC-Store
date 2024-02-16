@@ -2,6 +2,7 @@ using Entities.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Services.Contracts;
+using Store.Infrastructe.Extensions;
 
 
 namespace Store.Pages
@@ -13,10 +14,10 @@ namespace Store.Pages
         public Cart Cart { get; set; }  //IoC
         public string ReturnUrl { get; set; } = "/";
 
-        public CartModel(IServiceManager manager, Cart cart)
+        public CartModel(IServiceManager manager, Cart cartService)
         {
             _manager = manager;
-            Cart = cart;
+            Cart = cartService;
         }
 
         public void OnGet(string returnUrl)
@@ -33,7 +34,7 @@ namespace Store.Pages
             {
                 Cart.AddItem(product, 1);
             }
-            return Page(); //returnUrl
+            return RedirectToPage(new { returnUrl = returnUrl }); // returnUrl
         }
 
         public IActionResult OnPostRemove(int id, string returnUrl)

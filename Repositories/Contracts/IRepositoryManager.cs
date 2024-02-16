@@ -11,6 +11,7 @@ namespace Repositories.Contracts
     {
         IProductRepository Product { get; }
         ICategoryRepositıry Category { get; }
+        IOrderRepository Order { get; }
         void Save();
     }
 
