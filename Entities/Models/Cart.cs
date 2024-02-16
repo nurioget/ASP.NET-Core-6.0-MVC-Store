@@ -40,7 +40,7 @@ namespace Entities.Models
         public decimal ComputeTotalValue()=>
             Lines.Sum(e=>e.Product.Price*e.Quantity);
 
-        public virtual void Clearr()=>Lines.Clear();
+        public virtual void Clear()=>Lines.Clear();
 
     }
 }

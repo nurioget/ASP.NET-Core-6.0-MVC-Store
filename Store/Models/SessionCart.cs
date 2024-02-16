@@ -22,9 +22,9 @@ namespace Store.Models
             base.AddItem(product, quantity);
             Session?.SetJson<SessionCart>("cart", this);
         }
-        public override void Clearr()
+        public override void Clear()
         {
-            base.Clearr();
+            base.Clear();
             Session?.Remove("cart");
         }
         public override void RemoveLine(Product product)
