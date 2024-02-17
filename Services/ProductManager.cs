@@ -62,6 +62,12 @@ public class ProductManager : IProductService
         return productDto;
     }
 
+    public IEnumerable<Product> GetShowcaseProducts(bool trackChanges)
+    {
+        var products = _manager.Product.GetShowcaseProducts(trackChanges);
+        return products;
+    }
+
     public void UpdateOneProduct(ProductDtoForUpdate productDto)
     {
         //var entitiy = _manager.Product.GetOneProduct(productDto.ProductId, true);

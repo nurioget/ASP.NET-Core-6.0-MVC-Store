@@ -10,6 +10,7 @@ namespace Repositories.Contracts
     public interface IProductRepository : IRepositoriesBase<Product>
     {
         IQueryable<Product> GetAllProducts(bool trackChanges);
+        IQueryable<Product> GetShowcaseProducts(bool trackChanges);
 
         Product? GetOneProduct(int id, bool trackChanges);
         void CreateOneProduct(Product product);
