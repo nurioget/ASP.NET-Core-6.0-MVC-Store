@@ -1,4 +1,5 @@
 ﻿using Entities.Models;
+using Entities.RequestParameters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
@@ -16,10 +17,10 @@ namespace Store.Controllers
             _manager = manager;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(ProductRequestParameters p)
         {
 
-            var model = _manager.ProductService.GetAllProcucts(false);
+            var model = _manager.ProductService.GetAllProductsWitihDetails(p);
             return View(model);
 
         }

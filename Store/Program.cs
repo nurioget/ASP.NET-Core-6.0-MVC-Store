@@ -18,6 +18,7 @@ builder.Services.ConfigureDbContext(builder.Configuration);
 builder.Services.ConfigureSession();
 builder.Services.ConfigureRepositoryRegistration();
 builder.Services.ConfigureServiceRegistration();
+builder.Services.ConfigureRouting();
 
 builder.Services.AddAutoMapper(typeof(Program));
 
@@ -55,5 +56,6 @@ app.UseEndpoints(endpoints =>
 });
 
 app.ConfigureAndCheckMigrations();
+app.ConfigureLocalization();
 
 app.Run();

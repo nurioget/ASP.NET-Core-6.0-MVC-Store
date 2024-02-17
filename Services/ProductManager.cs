@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Entities.Dtos;
 using Entities.Models;
+using Entities.RequestParameters;
 using Repositories.Contracts;
 using Services.Contracts;
 
@@ -40,6 +41,11 @@ public class ProductManager : IProductService
     public IEnumerable<Product> GetAllProcucts(bool trackChanges)
     {
         return _manager.Product.GetAllProducts(trackChanges);
+    }
+
+    public IEnumerable<Product> GetAllProductsWitihDetails(ProductRequestParameters p)
+    {
+        return _manager.Product.GetAllProductsWitihDetails(p);
     }
 
     public Product? GetOneProduct(int id, bool trackChanges)
