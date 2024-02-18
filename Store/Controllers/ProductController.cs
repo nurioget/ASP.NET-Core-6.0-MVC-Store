@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Repositories;
 using Repositories.Contracts;
 using Services.Contracts;
+using Store.Models;
 
 namespace Store.Controllers
 {
@@ -20,8 +21,18 @@ namespace Store.Controllers
         public IActionResult Index(ProductRequestParameters p)
         {
 
-            var model = _manager.ProductService.GetAllProductsWitihDetails(p);
-            return View(model);
+            var products = _manager.ProductService.GetAllProductsWitihDetails(p);
+            var pagination = new Pagination()
+            {
+                CurrenPage = p.PageNumber,
+                ItemPerPage = p.PageSize,
+                TotalItmes= _manager.ProductService.GetAllProcucts(false).Count()
+            };
+            return View(new ProductListViewModel()
+            {
+                Products= products,
+                Pagination = pagination
+            });
 
         }
         public IActionResult Get([FromRoute(Name ="id")]int id)

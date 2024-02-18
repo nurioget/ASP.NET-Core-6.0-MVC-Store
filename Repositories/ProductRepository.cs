@@ -33,7 +33,8 @@ namespace Repositories
                 .Products
                 .FilteredByCategoryId(p.CategoryId)
                 .FilteredBysearchTerm(p.SearchTerm)
-                .FilteredByPrice(p.MinPrice,p.MaxPrice,p.IsValidPrice);
+                .FilteredByPrice(p.MinPrice, p.MaxPrice, p.IsValidPrice)
+                .ToPaginate(p.PageNumber, p.PageSize);
 
         }
 
