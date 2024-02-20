@@ -5,8 +5,13 @@ using Services.Contracts;
 using Services;
 using Entities.Models;
 using Store.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore.Internal;
 
-namespace Store.Infrastructe.Extensions
+
+
+namespace Store.Infrastructure.Extensions
 {
     public static class ServiceExtension
     {
@@ -16,8 +21,26 @@ namespace Store.Infrastructe.Extensions
             services.AddDbContext<RepositoryContext>(options =>
             {
                 options.UseSqlite(configuration.GetConnectionString("sqlconnection"),
-                b => b.MigrationsAssembly("Store"));
+                    b => b.MigrationsAssembly("Store"));
+
+                options.EnableSensitiveDataLogging(true);
+
             });
+        }
+
+        public static void ConfigureIdentity(this IServiceCollection services)
+        {
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+                options.User.RequireUniqueEmail = true;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 6;
+            })
+                .AddEntityFrameworkStores<RepositoryContext>();
+
         }
 
         public static void ConfigureSession(this IServiceCollection services)
@@ -45,6 +68,7 @@ namespace Store.Infrastructe.Extensions
             services.AddScoped<IProductService, ProductManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<IOrderService, OrderManager>();
+            services.AddScoped<IAuthService, AuthManager>();
         }
 
         public static void ConfigureRouting(this IServiceCollection services)

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repositories;
 
@@ -10,9 +11,10 @@ using Repositories;
 namespace Store.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20240220170718_startIdentity")]
+    partial class startIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.0");
@@ -267,22 +269,22 @@ namespace Store.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "89087a94-fcf1-4604-ac5c-82ebff50344b",
-                            ConcurrencyStamp = "b6d64a69-f39e-4dfe-a88b-639a08c5e52a",
+                            Id = "61b6e92d-372d-4adc-9dfa-bab52621726e",
+                            ConcurrencyStamp = "3c44f2bc-d90f-4428-9ea9-c51f5f926bb1",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "086a6a8f-ae9e-437a-9d27-efe4234343f6",
-                            ConcurrencyStamp = "2396fb39-ba31-4d69-b327-0584bac87ca8",
+                            Id = "63f2b40c-50dd-46dc-8748-5261c2165b9e",
+                            ConcurrencyStamp = "b1a0c60f-dc58-46b5-a726-1cc5c5697dca",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         },
                         new
                         {
-                            Id = "351f6ee0-8fe2-45a6-beba-da2f553a50dd",
-                            ConcurrencyStamp = "98a2f6ac-dd67-4c2d-9b96-1b858937a8c1",
+                            Id = "b2ef5891-fd82-45c9-a605-e647534efb33",
+                            ConcurrencyStamp = "d4580954-ef18-4dc1-b4bb-f6b1c6d67c0c",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

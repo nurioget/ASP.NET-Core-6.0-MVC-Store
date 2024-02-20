@@ -4,7 +4,7 @@ using Repositories;
 using Repositories.Contracts;
 using Services;
 using Services.Contracts;
-using Store.Infrastructe.Extensions;
+using Store.Infrastructure.Extensions;
 using Store.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +15,7 @@ builder.Services.AddRazorPages();
 
 
 builder.Services.ConfigureDbContext(builder.Configuration);
+builder.Services.ConfigureIdentity();
 builder.Services.ConfigureSession();
 builder.Services.ConfigureRepositoryRegistration();
 builder.Services.ConfigureServiceRegistration();
@@ -40,7 +41,7 @@ app.UseSession();
 app.UseRouting();
 
 app.UseAuthorization();
-
+app.UseAuthentication();
 
 app.UseEndpoints(endpoints =>
 {
@@ -57,5 +58,6 @@ app.UseEndpoints(endpoints =>
 
 app.ConfigureAndCheckMigrations();
 app.ConfigureLocalization();
+app.ConfigureDefaultAdminUser();
 
 app.Run();

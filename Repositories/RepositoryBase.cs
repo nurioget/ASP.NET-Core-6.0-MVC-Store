@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 
 namespace Repositories
 {
-    public abstract class RepositoryBase<T> : IRepositoriesBase<T>
-    where T : class,new()
+    public abstract class RepositoryBase<T> : IRepositoriesBase<T> where T : class,new()
     {
         protected readonly RepositoryContext _context;
 

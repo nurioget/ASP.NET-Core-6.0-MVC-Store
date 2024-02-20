@@ -2,11 +2,13 @@
 using Entities.Models;
 using Repositories.Config;
 using System.Reflection;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 
 namespace Repositories
 {
-    public class RepositoryContext : DbContext
+    public class RepositoryContext : IdentityDbContext<IdentityUser>
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }

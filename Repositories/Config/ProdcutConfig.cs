@@ -28,7 +28,7 @@ namespace Repositories.Config
             new Product() { ProductId = 7, CategoryId = 1,ImageUrl="/images/7.jpg", ProductName = "Hamlet", Price = 45 ,ShowCase=false},
             new Product() { ProductId = 8, CategoryId = 1,ImageUrl="/images/8.jpg", ProductName = "Xp-pen", Price = 1120 ,ShowCase=true},
             new Product() { ProductId = 9, CategoryId = 2,ImageUrl="/images/9.jpg", ProductName = "Galaxy 10", Price = 4440 ,ShowCase=true},
-            new Product() { ProductId = 10, CategoryId = 1,ImageUrl="/images/10.jpg", ProductName = "Hp Mause", Price = 600 ,ShowCase=true}
+            new Product() { ProductId = 10, CategoryId = 2,ImageUrl="/images/10.jpg", ProductName = "Hp Mause", Price = 600 ,ShowCase=true}
             );
         }
     }

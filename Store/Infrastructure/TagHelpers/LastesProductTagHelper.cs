@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Services.Contracts;
 
-namespace Store.Infrastructe.TagHelpers
+namespace Store.Infrastructure.TagHelpers
 {
     [HtmlTargetElement("div",Attributes ="products")]
     public class LastesProductTagHelper :TagHelper

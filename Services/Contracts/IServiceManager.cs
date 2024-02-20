@@ -13,6 +13,6 @@ namespace Services.Contracts
 
         IOrderService OrderService { get; }
 
-
+        IAuthService AuthService { get; }
     }
 }
