@@ -8,6 +8,7 @@ using Store.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 
 
@@ -69,6 +70,17 @@ namespace Store.Infrastructure.Extensions
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<IOrderService, OrderManager>();
             services.AddScoped<IAuthService, AuthManager>();
+        }
+        public static void ConfigureApplicationCookie(this IServiceCollection services)
+        {
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = new PathString("/Account/login");
+                options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+                options.ExpireTimeSpan=TimeSpan.FromMinutes(10);
+                options.AccessDeniedPath=new PathString("/Account/AccessDenied");
+            });
+
         }
 
         public static void ConfigureRouting(this IServiceCollection services)

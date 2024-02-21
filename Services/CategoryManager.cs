@@ -18,7 +18,7 @@ namespace Services
             _magager = magager;
         }
 
-        public IEnumerable<Category> GetAllCategory(bool trackChanges)
+        public IEnumerable<Category> GetAllCategories(bool trackChanges)
         {
             return _magager.Category.FindAll(trackChanges);
         }

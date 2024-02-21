@@ -4,10 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Services.Contracts;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Store.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class ProductController : Controller
     {
         private readonly IServiceManager _manager;
@@ -59,7 +61,7 @@ namespace Store.Areas.Admin.Controllers
 
         private SelectList GetCategoriesSelectList()
         {
-            return new SelectList(_manager.CategoryService.GetAllCategory(false),
+            return new SelectList(_manager.CategoryService.GetAllCategories(false),
                 "CategoryId",
                 "CategoryName", "1");
         }

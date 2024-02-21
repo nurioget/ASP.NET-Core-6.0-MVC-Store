@@ -15,7 +15,7 @@ namespace Store.Components
 
         public IViewComponentResult Invoke()
         {
-            var categories = _managar.CategoryService.GetAllCategory(false);
+            var categories = _managar.CategoryService.GetAllCategories(false);
             return View(categories);
         }
     }
