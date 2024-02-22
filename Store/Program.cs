@@ -10,6 +10,9 @@ using Store.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddControllers()
+    .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly);
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
@@ -46,15 +49,19 @@ app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapAreaControllerRoute(
+    endpoints.MapAreaControllerRoute( //Areas
         name:"Admin",
         areaName:"Admin",
         pattern:"Admin/{controller=Dashboard}/{action=Index}/{id?}"
         );
 
-    endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+    endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");//Default
 
-    endpoints.MapRazorPages();
+    endpoints.MapRazorPages();//Razor
+
+    endpoints.MapControllers();
+
+
 });
 
 app.ConfigureAndCheckMigrations();
