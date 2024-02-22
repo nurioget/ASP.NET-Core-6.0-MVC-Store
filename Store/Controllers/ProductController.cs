@@ -38,7 +38,7 @@ namespace Store.Controllers
         public IActionResult Get([FromRoute(Name ="id")]int id)
         {
             var model = _manager.ProductService.GetOneProduct(id, false);
-
+            ViewData["Title"] = model?.ProductName;
             return View(model);
 
         }

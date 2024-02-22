@@ -17,7 +17,9 @@
            asp-area=""
            asp-controller="Account"
            asp-route-returnUrl="@Context.Request.PathAndQuery()"
-           asp-action="Logout">Logout</a>
+           asp-action="Logout">
+            <i class="fa fa-solid fa-right-from-bracket"></i>
+           Logout</a>
     </li>
 }
 else
@@ -27,7 +29,9 @@ else
            asp-area=""
            asp-controller="Account"
            asp-route-returnUrl="@Context.Request.PathAndQuery()"
-           asp-action="Login">Login</a>
+           asp-action="Login">
+            <i class="fa-solid fa-right-to-bracket"></i>
+           Login</a>
     </li>
 }
 

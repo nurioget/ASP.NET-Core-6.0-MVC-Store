@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 
 
 
+
 namespace Store.Infrastructure.Extensions
 {
     public static class ServiceExtension
@@ -21,7 +22,7 @@ namespace Store.Infrastructure.Extensions
         {
             services.AddDbContext<RepositoryContext>(options =>
             {
-                options.UseSqlite(configuration.GetConnectionString("sqlconnection"),
+                options.UseSqlServer(configuration.GetConnectionString("mssqlconnection"),
                     b => b.MigrationsAssembly("Store"));
 
                 options.EnableSensitiveDataLogging(true);

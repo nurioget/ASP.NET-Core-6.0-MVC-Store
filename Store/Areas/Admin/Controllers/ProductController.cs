@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Services.Contracts;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
+using Entities.RequestParameters;
+using Store.Models;
 
 namespace Store.Areas.Admin.Controllers
 {
@@ -20,10 +22,21 @@ namespace Store.Areas.Admin.Controllers
         }
 
    
-        public IActionResult Index()
+        public IActionResult Index([FromQuery]ProductRequestParameters p)
         {
-            var model = _manager.ProductService.GetAllProcucts(false);
-            return View(model);
+            ViewData["Title"] = "Products";
+            var products = _manager.ProductService.GetAllProductsWitihDetails(p);
+            var pagination = new Pagination()
+            {
+                CurrenPage = p.PageNumber,
+                ItemPerPage = p.PageSize,
+                TotalItmes = _manager.ProductService.GetAllProcucts(false).Count()
+            };
+            return View(new ProductListViewModel()
+            {
+                Products = products,
+                Pagination = pagination
+            });
         }
        
 
@@ -50,8 +63,7 @@ namespace Store.Areas.Admin.Controllers
                     await file.CopyToAsync(stream);
                 }
                 productDto.ImageUrl = String.Concat("/images/", file.FileName);
-
-
+                TempData["success"] = $"{productDto.ProductName} has been created.";
                 _manager.ProductService.CreateOneProduct(productDto);
                 return RedirectToAction("Index");
             }
@@ -72,6 +84,7 @@ namespace Store.Areas.Admin.Controllers
         {
             ViewBag.Categories = GetCategoriesSelectList();
             var model=_manager.ProductService.GetOneProductForUpdate(id,false);
+            ViewData["Title"] = model?.ProductName;
             return View(model);
         }
 
@@ -103,6 +116,7 @@ namespace Store.Areas.Admin.Controllers
         public IActionResult Delete([FromRoute(Name = "id")] int id) 
         {
             _manager.ProductService.DeleteOneProduct(id);
+            TempData["danger"] = "The product has benn removed.";
             return RedirectToAction("Index");
         }
 
